@@ -1,0 +1,7 @@
+ansible
+molecule
+molecule-podman
+ansible-lint
+molecule[lint]
+podman
+dnf
