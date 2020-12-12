@@ -11,3 +11,9 @@
     src: awesome.session
     dest: "/usr/share/gnome-session/sessions/awesome.session"
   become: true
+
+- name: Copy awesome desktop entry
+  copy:
+    src: awesome.desktop
+    dest: "/usr/share/applications/awesome.desktop"
+  become: true

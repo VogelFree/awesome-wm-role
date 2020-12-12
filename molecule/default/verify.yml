@@ -20,3 +20,12 @@
     - name: Check if awesome session exists
       assert:
         that: awesomeSession.stat.exists
+
+    - name: Get gnome desktop entry for awesome wm
+      stat:
+        path: "usr/share/applications/awesome.desktop"
+      register: awesomeDesktop
+
+    - name: Check if awesome desktop entry exists
+      assert:
+        that: awesomeDesktop.stat.exists
