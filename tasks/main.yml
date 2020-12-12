@@ -1,0 +1,6 @@
+---
+- name: Install awesome package
+  package:
+    name:
+      - awesome
+  become: true

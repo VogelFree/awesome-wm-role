@@ -6,3 +6,7 @@
     - name: Get installed packages
       package_facts:
         manager: "auto"
+
+    - name: Check if awesome is installed
+      assert:
+        that: "'awesome' in ansible_facts.packages"
