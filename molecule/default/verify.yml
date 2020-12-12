@@ -10,3 +10,13 @@
     - name: Check if awesome is installed
       assert:
         that: "'awesome' in ansible_facts.packages"
+        that: "'gnome-session' in ansible_facts.packages"
+
+    - name: Get gnome session configuration for awesome wm
+      stat:
+        path: "/usr/share/gnome-session/sessions/awesome.session"
+      register: awesomeSession
+
+    - name: Check if awesome session exists
+      assert:
+        that: awesomeSession.stat.exists

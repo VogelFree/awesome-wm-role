@@ -3,4 +3,11 @@
   package:
     name:
       - awesome
+      - gnome-session
+  become: true
+
+- name: Copy awesome gnome session
+  copy:
+    src: awesome.session
+    dest: "/usr/share/gnome-session/sessions/awesome.session"
   become: true
