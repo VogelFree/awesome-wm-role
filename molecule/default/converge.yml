@@ -27,9 +27,12 @@
       shell:
         cmd: "git checkout -b master && git commit --allow-empty -m 'Initial commit' && git push --set-upstream origin master"
         chdir: "/tmp/git.awesome-config"
+      ignore_errors: true
 
     - name: "Include awesome-wm-role"
       include_role:
         name: "awesome-wm-role"
       vars:
         config_repo: "/tmp/awesome-config"
+        config_packages:
+          - wget

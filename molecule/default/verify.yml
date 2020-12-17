@@ -39,3 +39,7 @@
     - name: Check if folder is a git repository
       assert:
         that: "{{ awesomeConfig.rc }} == 0"
+
+    - name: Check if config required packages are installed
+      assert:
+        that: "'wget' in ansible_facts.packages"

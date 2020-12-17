@@ -22,3 +22,9 @@
   git:
     repo: "{{ config_repo }}"
     dest: "/home/{{ ansible_user_id }}/.config/awesome"
+
+- name: Install packages which are required by the config
+  package:
+    name: "{{ item }}"
+  become: true
+  with_items: "{{ config_packages }}"
