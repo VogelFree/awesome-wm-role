@@ -29,3 +29,13 @@
     - name: Check if awesome desktop entry exists
       assert:
         that: awesomeDesktop.stat.exists
+
+    - name: Get awesome configure folder
+      shell: git ls-remote --exit-code
+      args:
+        chdir: "/home/root/.config/awesome"
+      register: awesomeConfig
+
+    - name: Check if folder is a git repository
+      assert:
+        that: "{{ awesomeConfig.rc }} == 0"

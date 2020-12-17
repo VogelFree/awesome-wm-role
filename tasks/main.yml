@@ -17,3 +17,8 @@
     src: awesome.desktop
     dest: "/usr/share/applications/awesome.desktop"
   become: true
+
+- name: Get the configuration for awesome from git repo
+  git:
+    repo: "{{ config_repo }}"
+    dest: "/home/{{ ansible_user_id }}/.config/awesome"

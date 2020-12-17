@@ -2,6 +2,34 @@
 - name: Converge
   hosts: all
   tasks:
+    - name: "Create folder for dummy bare repo"
+      file:
+        path: "/tmp/awesome-config"
+        state: directory
+
+    - name: "Create dummy awesome config repo"
+      shell:
+        cmd: "git init --bare"
+        chdir: "/tmp/awesome-config"
+
+    - name: "Clone dummy repo"
+      git:
+        repo: "/tmp/awesome-config"
+        dest: "/tmp/git.awesome-config"
+      ignore_errors: true
+
+    - name: "Set Config"
+      shell:
+        cmd: "git config user.email \"you@example.com\" && git config user.name \"Your Name\""
+        chdir: "/tmp/git.awesome-config"
+
+    - name: "Create dummy branch"
+      shell:
+        cmd: "git checkout -b master && git commit --allow-empty -m 'Initial commit' && git push --set-upstream origin master"
+        chdir: "/tmp/git.awesome-config"
+
     - name: "Include awesome-wm-role"
       include_role:
         name: "awesome-wm-role"
+      vars:
+        config_repo: "/tmp/awesome-config"
